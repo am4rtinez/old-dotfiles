@@ -10,5 +10,10 @@
     "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
     "editor.fontFamily": "Hack, Consolas, 'Courier New', monospace",
     "terminal.integrated.fontFamily": "Meslo LG M DZ for Powerline",
-    "terminal.integrated.fontSize": 12
+    "terminal.integrated.fontSize": 12,
+    "workbench.editorAssociations": {
+        "*.ipynb": "jupyter.notebook.ipynb"
+    },
+    "terminal.external.windowsExec": "C:\\\\Users\\\\amartinez\\\\AppData\\\\Local\\\\Microsoft\\\\WindowsApps\\\\wt.exe",
+    "terminal.integrated.defaultProfile.windows": "Command Prompt"
 }
