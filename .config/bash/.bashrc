@@ -1,162 +1,7 @@
-# ~/.bashrc: executed by bash(1) for non-login shells.
-# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
-# for examples
-
-# If not running interactively, don't do anything
-case $- in
-    *i*) ;;
-      *) return;;
-esac
-# don't put duplicate lines or lines starting with space in the history.
-# See bash(1) for more options
-HISTCONTROL=ignoreboth
-
-# append to the history file, don't overwrite it
-shopt -s histappend
-
-# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=1000
-HISTFILESIZE=2000
-
-# check the window size after each command and, if necessary,
-# update the values of LINES and COLUMNS.
-shopt -s checkwinsize
-
-# set variable identifying the chroot you work in (used in the prompt below)
-if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
-    debian_chroot=$(cat /etc/debian_chroot)
-fi
-
-# set a fancy prompt (non-color, unless we know we "want" color)
-case "$TERM" in
-    xterm-color|*-256color) color_prompt=yes;;
-esac
-
-# uncomment for a colored prompt, if the terminal has the capability; turned
-# off by default to not distract the user: the focus in a terminal window
-# should be on the output of commands, not on the prompt
-#force_color_prompt=yes
-if [ -n "$force_color_prompt" ]; then
-    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-	# We have color support; assume it's compliant with Ecma-48
-	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-	# a case would tend to support setf rather than setaf.)
-	color_prompt=yes
-    else
-	color_prompt=
-    fi
-fi
-
-if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
-fi
-unset color_prompt force_color_prompt
-
-# If this is an xterm set the title to user@host:dir
-case "$TERM" in
-xterm*|rxvt*)
-    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-    ;;
-*)
-    ;;
-esac
-
-# enable color support of ls and also add handy aliases
-if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
-    #alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
-
-    #alias grep='grep --color=auto'
-    #alias fgrep='fgrep --color=auto'
-    #alias egrep='egrep --color=auto'
-fi
-
-# Alias definitions.
-# You may want to put all your additions into a separate file like
-# ~/.bash_aliases, instead of adding them here directly.
-# See /usr/share/doc/bash-doc/examples in the bash-doc package.
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
-fi
-
-# enable programmable completion features (you don't need to enable
-# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
-# sources /etc/bash.bashrc).
-if ! shopt -oq posix; then
-  if [ -f /usr/share/bash-completion/bash_completion ]; then
-    . /usr/share/bash-completion/bash_completion
-  elif [ -f /etc/bash_completion ]; then
-    . /etc/bash_completion
-  fi
-fi
-
-## https://raw.githubusercontent.com/ChrisTitusTech/scripts/master/fancy-bash-promt.sh
-##
-##	+-----------------------------------+-----------------------------------+
-##	|                                                                       |
-##	|                            FANCY BASH PROMT                           |
-##	|                                                                       |
-##	| Copyright (c) 2018, Andres Gongora <mail@andresgongora.com>.          |
-##	|                                                                       |
-##	| This program is free software: you can redistribute it and/or modify  |
-##	| it under the terms of the GNU General Public License as published by  |
-##	| the Free Software Foundation, either version 3 of the License, or     |
-##	| (at your option) any later version.                                   |
-##	|                                                                       |
-##	| This program is distributed in the hope that it will be useful,       |
-##	| but WITHOUT ANY WARRANTY; without even the implied warranty of        |
-##	| MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         |
-##	| GNU General Public License for more details.                          |
-##	|                                                                       |
-##	| You should have received a copy of the GNU General Public License     |
-##	| along with this program. If not, see <http://www.gnu.org/licenses/>.  |
-##	|                                                                       |
-##	+-----------------------------------------------------------------------+
-##
-##	DESCRIPTION:
-##	This script updates your "PS1" environment variable to display colors.
-##	Addicitionally, it also shortens the name of your current part to maximum
-##	25 characters, which is quite useful when working in deeply nested folders.
-##
-##	INSTALLATION:
-##	Copy this script to your home folder and rename it to "bash-custom.sh"
-##	Run this command from any terminal: 
-##		echo "source ~/.bash-custom.sh" >> ~/.bashrc
-##
-##	Alternatively, copy the content of this file into your .bashrc file
-##
-##	FUNCTIONS:
-##
-##	* bash_prompt_command()
-##	  This function takes your current working directory and stores a shortened
-##	  version in the variable "NEW_PWD".
-##
-##	* format_font()
-##	  A small helper function to generate color formating codes from simple
-##	  number codes (defined below as local variables for convenience).
-##
-##	* bash_prompt()
-##	  This function colorizes the bash promt. The exact color scheme can be
-##	  configured here. The structure of the function is as follows:
-##		1. A. Definition of available colors for 16 bits.
-##		1. B. Definition of some colors for 256 bits (add your own).
-##		2. Configuration >> EDIT YOUR PROMT HERE<<.
-##		4. Generation of color codes.
-##		5. Generation of window title (some terminal expect the first
-##		   part of $PS1 to be the window title)
-##		6. Formating of the bash promt ($PS1).
-##
-##	* Main script body:	
-##	  It calls the adequate helper functions to colorize your promt and sets
-##	  a hook to regenerate your working directory "NEW_PWD" when you change it.
-## 
 ################################################################################
 ##  FUNCTIONS                                                                 ##
 ################################################################################
+
 ##
 ##	ARRANGE $PWD AND STORE IT IN $NEW_PWD
 ##	* The home directory (HOME) is replaced with a ~
@@ -168,7 +13,6 @@ fi
 ##	Original source: WOLFMAN'S color bash promt
 ##	https://wiki.chakralinux.org/index.php?title=Color_Bash_Prompt#Wolfman.27s
 ##
-
 bash_prompt_command() {
 	# How many characters of the $PWD should be kept
 	local pwdmaxlen=25
@@ -201,6 +45,8 @@ format_font()
 {
 	## FIRST ARGUMENT TO RETURN FORMAT STRING
 	local output=$1
+
+
 	case $# in
 	2)
 		eval $output="'\[\033[0;${2}m\]'"
@@ -217,8 +63,9 @@ format_font()
 	esac
 }
 
-############################# COLORIZE BASH PROMT ##############################
-
+##
+## COLORIZE BASH PROMT
+##
 bash_prompt() {
 
 	############################################################################
@@ -235,6 +82,7 @@ bash_prompt() {
 	local    INVERT='7'
 	local    HIDDEN='8'
 	
+	
 	## COLORS
 	local   DEFAULT='9'
 	local     BLACK='0'
@@ -245,7 +93,6 @@ bash_prompt() {
 	local   MAGENTA='5'
 	local      CYAN='6'
 	local    L_GRAY='7'
-	local	 N_BLUE='219'
 	local    D_GRAY='60'
 	local     L_RED='61'
 	local   L_GREEN='62'
@@ -271,23 +118,26 @@ bash_prompt() {
 	local WHITE_BOLD="\[\033[1;38;5;15m\]"
 	local GRAY_BOLD="\[\033[1;90m\]"
 	local BLUE_BOLD="\[\033[1;38;5;74m\]"
-	local GREEN_BOLD="\[\033[1;38;5;46m\]"
-
+	
+	############################################################################
+      	##									  ##
 	##                          CONFIGURE HERE                                ##
+	##									  ##
 	############################################################################
 	## CONFIGURATION                                                          ##
 	## Choose your color combination here                                     ##
 	############################################################################
-	local FONT_COLOR_1=$L_GREEN
-	local BACKGROUND_1=$BLACK
+
+	local FONT_COLOR_1=$RED
+	local BACKGROUND_1=$DARK
 	local TEXTEFFECT_1=$BOLD
 	
-	local FONT_COLOR_2=$GREEN
-	local BACKGROUND_2=$MAGENTA
+	local FONT_COLOR_2=$D_GRAY
+	local BACKGROUND_2=$RED
 	local TEXTEFFECT_2=$BOLD
 	
 	local FONT_COLOR_3=$D_GRAY
-	local BACKGROUND_3=$L_YELLOW
+	local BACKGROUND_3=$WHITE
 	local TEXTEFFECT_3=$BOLD
 	
 	local PROMT_FORMAT=$WHITE_BOLD
@@ -297,30 +147,16 @@ bash_prompt() {
 	## I use them for different hosts. Test them out ;)                       ##
 	############################################################################
 	
-	## CONFIGURATION: LILITH
+	## CONFIGURATION: BLUE-WHITE
 	if [ "$HOSTNAME" = lilith ]; then
 		FONT_COLOR_1=$RED; BACKGROUND_1=$DARK; TEXTEFFECT_1=$BOLD
 		FONT_COLOR_2=$L_RED; BACKGROUND_2=$D_GRAY; TEXTEFFECT_2=$BOLD	
 		FONT_COLOR_3=$D_GRAY; BACKGROUND_3=$WHITE; TEXTEFFECT_3=$BOLD	
 		PROMT_FORMAT=$WHITE_BOLD
 	fi
+  
+	############################################################################	
 	
-	## CONFIGURATION: EVA01
-	if [ "$HOSTNAME" = eva01 ]; then
-		FONT_COLOR_1=$L_GREEN; BACKGROUND_1=$BLACK; TEXTEFFECT_1=$BOLD
-		FONT_COLOR_2=$GREEN; BACKGROUND_2=$MAGENTA; TEXTEFFECT_2=$BOLD
-		FONT_COLOR_3=$D_GRAY; BACKGROUND_3=$L_YELLOW; TEXTEFFECT_3=$BOLD
-		PROMT_FORMAT=$WHITE_BOLD
-	fi
-	
-	## CONFIGURATION: EVA01
-	if [ "$HOSTNAME" = piserver ]; then
-		FONT_COLOR_1=$L_GREEN; BACKGROUND_1=$BLACK; TEXTEFFECT_1=$BOLD
-		FONT_COLOR_2=$GREEN; BACKGROUND_2=$MAGENTA; TEXTEFFECT_2=$BOLD
-		FONT_COLOR_3=$D_GRAY; BACKGROUND_3=$L_YELLOW; TEXTEFFECT_3=$BOLD
-		PROMT_FORMAT=$WHITE_BOLD
-	fi
-
 	############################################################################
 	## TEXT FORMATING                                                         ##
 	## Generate the text formating according to configuration                 ##
@@ -342,6 +178,7 @@ bash_prompt() {
 	FC4=$(($FONT_COLOR_4+$COLOR))
 	BG4=$(($BACKGROUND_4+$BG))
 	FE4=$(($TEXTEFFECT_4+$EFFECT))
+	
 
 	## CALL FORMATING HELPER FUNCTION: effect + font color + BG color
 	local TEXT_FORMAT_1
@@ -352,7 +189,7 @@ bash_prompt() {
 	format_font TEXT_FORMAT_2 $FE2 $FC2 $BG2
 	format_font TEXT_FORMAT_3 $FC3 $FE3 $BG3
 	format_font TEXT_FORMAT_4 $FC4 $FE4 $BG4
-	
+
 	# GENERATE PROMT SECTIONS
 	local PROMT_USER=$"$TEXT_FORMAT_1 \u "
 	local PROMT_HOST=$"$TEXT_FORMAT_2 \h "
@@ -382,6 +219,7 @@ bash_prompt() {
 	format_font SEPARATOR_FORMAT_1 $TSFC1 $TSBG1
 	format_font SEPARATOR_FORMAT_2 $TSFC2 $TSBG2
 	format_font SEPARATOR_FORMAT_3 $TSFC3 $TSBG3
+	
 
 	# GENERATE SEPARATORS WITH FANCY TRIANGLE
 	local TRIANGLE=$'\uE0B0'	
@@ -430,5 +268,4 @@ bash_prompt
 unset bash_prompt
 
 ### EOF ###
-
-export PATH="${PATH}:~/bin"
+source ~/.bash-custom.sh
