@@ -42,10 +42,23 @@ Insert this line
 . $env:USERPROFILE\.config\powershell\user_profile.ps1
 ```
 
+Insall module posh-git
+
+```
+Install-Module posh-git -Scope CurrentUser -Force
+```
+
+Insall module oh-my-posh
+
+```
+Install-Module oh-my-posh -Scope CurrentUser -Force
+```
+
 Try if it works in an other shell.
 
 scoop install nvm
-sudo nvm use 17.3.0
+nvm version
+nvm use 17.3.0
 
 Install-Module -Name Terminal-Icons -Repository PSGallery -Force
 Import-Module Terminal-Icons
