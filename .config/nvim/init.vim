@@ -1,14 +1,19 @@
-set title
-set number
-set mouse=a " Permite la integracion del mouse (seleccionar texto, mover el cursor)
+" define the leader key with the space key
+"
+let g:mapleader = " "
 
-set cursorline " Resalta la línea actual
-" Indentación a 2 espacios
-set tabstop=2
-set shiftwidth=2
-set softtabstop=2
-set shiftround
+" =====================
+" Settings config file.
+" =====================
+source $HOME/.config/nvim/general/settings.vim
 
-set spelllang=en,es  " Corregir palabras usando diccionarios en inglés y español
+" =====================
+" mappings config file.
+" =====================
+source $HOME/.config/nvim/keys/mappings.vim
 
-nnoremap <C-s> :w<CR>
+" =====================
+" Plugins config file.
+" =====================
+source $HOME/.config/nvim/vim-plug/plugins.vim
+source $HOME/.config/nvim/vim-plug/plugins-config.vim 
