@@ -147,7 +147,7 @@ bash_prompt() {
 	## I use them for different hosts. Test them out ;)                       ##
 	############################################################################
 	
-	## CONFIGURATION: BLUE-WHITE
+	## CONFIGURATION: lilith laptop
 	if [ "$HOSTNAME" = lilith ]; then
 		FONT_COLOR_1=$RED; BACKGROUND_1=$DARK; TEXTEFFECT_1=$BOLD
 		FONT_COLOR_2=$L_RED; BACKGROUND_2=$D_GRAY; TEXTEFFECT_2=$BOLD	
@@ -155,6 +155,13 @@ bash_prompt() {
 		PROMT_FORMAT=$WHITE_BOLD
 	fi
   
+	## CONFIGURATION: mediacenter
+	if [ "$HOSTNAME" = mediacenter ]; then
+		FONT_COLOR_1=$YELLOW; BACKGROUND_1=$D_GRAY; TEXTEFFECT_1=$BOLD
+		FONT_COLOR_2=$DARK; BACKGROUND_2=$L_GRAY; TEXTEFFECT_2=$BOLD	
+		FONT_COLOR_3=$D_GRAY; BACKGROUND_3=$WHITE; TEXTEFFECT_3=$BOLD	
+		PROMT_FORMAT=$WHITE_BOLD
+	fi
 	############################################################################	
 	
 	############################################################################
