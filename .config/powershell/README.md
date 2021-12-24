@@ -1,6 +1,9 @@
+# Steps
+
 Based on tutorial from devaslife: https://www.youtube.com/watch?v=5-aK2_WwrmM&t=585s
 
 Install Windows Terminal.
+
 Install PowerShell 7.
 
 Install scoop
@@ -9,7 +12,7 @@ Install scoop
 iwr -useb get.scoop.sh | iex
 ```
 
-Instalar curl, sudo y jq
+Instll curl, sudo and jq
 
 ```
 scoop install curl sudo jq
@@ -56,10 +59,17 @@ Install-Module oh-my-posh -Scope CurrentUser -Force
 
 Try if it works in an other shell.
 
+Install nvm and config to use the version installed
+
+```
 scoop install nvm
 nvm version
 nvm use 17.3.0
+```
 
+Install and config modules
+
+```
 Install-Module -Name Terminal-Icons -Repository PSGallery -Force
 Import-Module Terminal-Icons
 
@@ -73,3 +83,4 @@ Set-PSReadLineOption -PredictionViewStyle ListView
 scoop install fzf
 Install-Module -Name PSFzf -Scope CurrentUser -Force
 Set-PsFzfOption -PSReadlineChordProvider 'Ctrl+f' -PSReadlineChordReverseHistory 'Ctrl+r'
+```

@@ -275,4 +275,8 @@ bash_prompt
 unset bash_prompt
 
 ### EOF ###
-source ~/.bash-custom.sh
+# source ~/.bash-custom.sh
+
+source  ~/.bash_aliases
+
+export PATH="${PATH}:~/bin"
