@@ -23,6 +23,7 @@ Plug 'jiangmiao/auto-pairs'     " Auto pairs for '(' '[' '{'
 Plug 'sheerun/vim-polyglot'     " Better Syntax Support
 Plug 'alvan/vim-closetag'
 Plug 'tpope/vim-surround'
+Plug 'ap/vim-css-color'         " Color previews for CSS
 
 " Autocomplete
 Plug 'SirVer/ultisnips'         " Snippets engine
