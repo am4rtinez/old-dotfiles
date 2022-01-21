@@ -162,6 +162,15 @@ bash_prompt() {
 		FONT_COLOR_3=$D_GRAY; BACKGROUND_3=$WHITE; TEXTEFFECT_3=$BOLD	
 		PROMT_FORMAT=$WHITE_BOLD
 	fi
+
+	## CONFIGURATION: mediacenter
+	if [ "$HOSTNAME" = eva01 ]; then
+		FONT_COLOR_1=$L_GREEN; BACKGROUND_1=$BLACK; TEXTEFFECT_1=$BOLD
+		FONT_COLOR_2=$GREEN; BACKGROUND_2=$MAGENTA; TEXTEFFECT_2=$BOLD	
+		FONT_COLOR_3=$D_GRAY; BACKGROUND_3=$YELLOW; TEXTEFFECT_3=$BOLD	
+		PROMT_FORMAT=$WHITE_BOLD
+	fi
+
 	############################################################################	
 	
 	############################################################################
