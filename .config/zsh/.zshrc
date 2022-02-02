@@ -19,6 +19,11 @@ if [[ "$HOSTNAME" -eq eva01 ]]
 then
   autoload -Uz eva01.zsh; eva01.zsh
 fi
+if [[ "$HOSTNAME" -eq mediacenter ]]
+then
+  autoload -Uz mediacenter.zsh; mediacenter.zsh
+fi
+
 
 #source $ZDOTDIR/.zprompts/lilith
 

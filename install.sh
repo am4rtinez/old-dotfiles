@@ -52,5 +52,6 @@ chsh -s $(which zsh)
 echo "Done."
 
 echo "Setting zsh config:"
-cp -r "$NVIM_DIR" "$USER_CONF_DIR"
+cp -r "$ZSH_DIR" "$USER_CONF_DIR"
+mv "$USER_CONF_DIR"/zsh/.zshenv "$USER_CONF_DIR"
 echo "Done."
