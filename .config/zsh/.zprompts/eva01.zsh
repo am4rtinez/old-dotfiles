@@ -34,9 +34,9 @@ os_icon(){
 ok_username() {
    ARROW_FG="233"
    ARROW_BG="234"
-   SEGMENT_FG="009"
+   SEGMENT_FG="green"
    SEGMENT_BG="234"
-   NEXT_ARROW_BG="238"
+   NEXT_ARROW_BG="091"
    NEXT_ARROW_FG="234"
    echo "$(arrow_start)%K{$SEGMENT_BG}%F{$SEGMENT_FG} %n %k%f$(arrow_end)"
 }
@@ -44,10 +44,10 @@ ok_username() {
 hostname() {
    ARROW_FG="233"
    ARROW_BG="234"
-   SEGMENT_FG="009"
-   SEGMENT_BG="238"
+   SEGMENT_FG="green"
+   SEGMENT_BG="091"
    NEXT_ARROW_BG="015"
-   NEXT_ARROW_FG="238"
+   NEXT_ARROW_FG="091"
    echo "$(arrow_start)%K{$SEGMENT_BG}%F{$SEGMENT_FG} %m %k%f$(arrow_end)"
 }
 
