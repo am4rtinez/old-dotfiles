@@ -8,8 +8,8 @@ ZSH_DIR="$CONF_DIR/zsh"
 echo "============================================"
 echo "           - Software Setup -"
 echo "============================================"
-#sudo apt install git neovim zsh tmux curl
-sudo apt install git neovim tmux curl
+sudo apt install git neovim zsh tmux curl
+#$sudo apt install git neovim tmux curl
 
 
 echo "============================================"
@@ -53,5 +53,11 @@ echo "Done."
 
 echo "Setting zsh config:"
 cp -r "$ZSH_DIR" "$USER_CONF_DIR"
-mv "$USER_CONF_DIR"/zsh/.zshenv "$USER_CONF_DIR"
+cp "$USER_CONF_DIR"/zsh/.zshenv "$HOME"
 echo "Done."
+
+echo "Setting zsh plugins:"
+echo "Zsh AutoSuggestions:"
+git clone https://github.com/zsh-users/zsh-autosuggestions.git "$USER_CONF_DIR"/zsh/.zplugins/
+echo "Zsh Completions:"
+git clone https://github.com/zsh-users/zsh-completions.git "$USER_CONF_DIR"/zsh/.zplugins/

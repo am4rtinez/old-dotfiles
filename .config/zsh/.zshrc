@@ -24,8 +24,12 @@ then
   autoload -Uz mediacenter.zsh; mediacenter.zsh
 fi
 
-
-#source $ZDOTDIR/.zprompts/lilith
+# +-----------------------------------------------------------------------------------------------+
+# |                                           PLUGISN                                             |
+# +-----------------------------------------------------------------------------------------------+
+ 
+source $ZDOTDIR/.zplugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+source $ZDOTDIR/.zplugins/zsh-completions/zsh-completions.plugin.zsh
 
 # +-----------------------------------------------------------------------------------------------+
 # |                                           HISTORY                                             |
