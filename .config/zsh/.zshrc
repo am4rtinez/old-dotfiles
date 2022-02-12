@@ -1,9 +1,9 @@
 # Adding aliases.
 source $XDG_CONFIG_HOME/.aliases
 
-# Set up the prompt
-#autoload -Uz promptinit; promptinit
-#prompt adam1
+ZSH_DEFAULT_THEME="$ZDOTDIR/.zprompts/default.zsh"
+ZSH_THEME_PATH=$ZDOTDIR/.zprompts/"$(hostname)".zsh
+ZSH_PROMPT=$(hostname).zsh
 
 # +-----------------------------------------------------------------------------------------------+
 # |                                            PROMT                                              |
@@ -11,17 +11,11 @@ source $XDG_CONFIG_HOME/.aliases
  
 fpath=("$ZDOTDIR/.zprompts" $fpath)
 
-if [[ "$HOSTNAME" -eq lilith ]]
-then
-  autoload -Uz lilith.zsh; lilith.zsh
-fi
-if [[ "$HOSTNAME" -eq eva01 ]]
-then
-  autoload -Uz eva01.zsh; eva01.zsh
-fi
-if [[ "$HOSTNAME" -eq mediacenter ]]
-then
-  autoload -Uz mediacenter.zsh; mediacenter.zsh
+if [[ -e $ZSH_THEME_PATH ]]; then
+  autoload -Uz $ZSH_PROMPT; $ZSH_PROMPT
+else
+  autoload -Uz promptinit; promptinit
+  prompt adam1
 fi
 
 # +-----------------------------------------------------------------------------------------------+
