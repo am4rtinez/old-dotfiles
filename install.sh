@@ -58,6 +58,6 @@ echo "Done."
 
 echo "Setting zsh plugins:"
 echo "Zsh AutoSuggestions:"
-git clone https://github.com/zsh-users/zsh-autosuggestions.git "$USER_CONF_DIR"/zsh/.zplugins/
+git clone https://github.com/zsh-users/zsh-autosuggestions.git "$USER_CONF_DIR"/zsh/.zplugins/zsh-autosuggestions
 echo "Zsh Completions:"
-git clone https://github.com/zsh-users/zsh-completions.git "$USER_CONF_DIR"/zsh/.zplugins/
+git clone https://github.com/zsh-users/zsh-completions.git "$USER_CONF_DIR"/zsh/.zplugins/zsh-completions
