@@ -28,7 +28,7 @@ Plug 'ap/vim-css-color'         " Color previews for CSS
 " Autocomplete
 Plug 'SirVer/ultisnips'         " Snippets engine
 Plug 'honza/vim-snippets'       " a collection of snippets
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Status bar
 Plug 'maximbaz/lightline-ale'
