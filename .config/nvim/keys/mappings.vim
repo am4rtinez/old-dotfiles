@@ -3,6 +3,9 @@
 " ===============================
 "
 
+" Exit insert mode
+inoremap jj <Esc>
+
 " Save with <leader> + s
 nnoremap <leader>w :w<CR>
 nnoremap <leader>q :q<CR>
@@ -11,15 +14,15 @@ nnoremap <Leader>Q :q!<CR>
 " Shortcut to edit THIS configuration file: (e)dit (c)onfiguration
 nnoremap <silent> <leader>ec :e $MYVIMRC<CR>
 
-" Define <líder> + y to copy into clipboard (visual, normal modes)
+" Define <leader> + y to copy into clipboard (visual, normal modes)
 vnoremap <leader>y "+y
 nnoremap <leader>y "+y
 
-" Define <líder> + d to cut into clipboard (visual & normal modes)
+" Define <leader> + d to cut into clipboard (visual & normal modes)
 vnoremap <leader>d "+d
 nnoremap <leader>d "+d
 
-" Define <líder> + p to paste from clipboard (visual & normal modes)
+" Define <leader> + p to paste from clipboard (visual & normal modes)
 nnoremap <leader>p "+p
 vnoremap <leader>p "+p
 nnoremap <leader>P "+P
