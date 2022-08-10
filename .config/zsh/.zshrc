@@ -19,9 +19,8 @@ else
 fi
 
 # +-----------------------------------------------------------------------------------------------+
-# |                                           PLUGISN                                             |
+# |                                           PLUGINS                                             |
 # +-----------------------------------------------------------------------------------------------+
- 
 source $ZDOTDIR/.zplugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $ZDOTDIR/.zplugins/zsh-completions/zsh-completions.plugin.zsh
 
@@ -32,15 +31,17 @@ source $ZDOTDIR/.zplugins/zsh-completions/zsh-completions.plugin.zsh
 HISTSIZE=1000
 SAVEHIST=1000
 HISTFILE=~/.zsh_history
+HISTDUP=erase
 
 #setopt EXTENDED_HISTORY          # Write the history file in the ':start:elapsed;command' format.
+setopt APPEND_HISTORY
 setopt SHARE_HISTORY             # Share history between all sessions.
 #setopt HIST_EXPIRE_DUPS_FIRST    # Expire a duplicate event first when trimming history.
-#setopt HIST_IGNORE_DUPS          # Do not record an event that was just recorded again.
-#setopt HIST_IGNORE_ALL_DUPS      # Delete an old recorded event if a new event is a duplicate.
-#setopt HIST_FIND_NO_DUPS         # Do not display a previously found event.
+setopt HIST_IGNORE_DUPS          # Do not record an event that was just recorded again.
+setopt HIST_IGNORE_ALL_DUPS      # Delete an old recorded event if a new event is a duplicate.
+setopt HIST_FIND_NO_DUPS         # Do not display a previously found event.
 #setopt HIST_IGNORE_SPACE         # Do not record an event starting with a space.
-#setopt HIST_SAVE_NO_DUPS         # Do not write a duplicate event to the history file.
+setopt HIST_SAVE_NO_DUPS         # Do not write a duplicate event to the history file.
 #setopt HIST_VERIFY               # Do not execute immediately upon history expansion
 
 
@@ -48,7 +49,13 @@ setopt SHARE_HISTORY             # Share history between all sessions.
 bindkey -e
 
 # Use modern completion system
-autoload -Uz compinit; compinit
+# Use vcs_info to control version
+autoload -Uz compinit add-zsh-hook vcs_info; compinit
+setopt prompt_subst
+add-zsh-hook precmd vcs_info
+
+zstyle ':vcs_info:*' enable git
+zstyle ':vcs_info:*' check-for-changes true
 
 zstyle ':completion:*' auto-description 'specify: %d'
 zstyle ':completion:*' completer _expand _complete _correct _approximate
