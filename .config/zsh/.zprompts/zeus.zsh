@@ -1,8 +1,4 @@
 # Set required options.
-#setopt PROMPT_SUBST
-#autoload -U colors && colors # Enable colors
-
-precmd () { vcs_info }
 
 right_arrow(){
 	echo $'\ue0b0'
@@ -18,7 +14,7 @@ arrow_start() {
 arrow_start_git() {
 	ARROW_FG="233"
 	ARROW_BG="234"
-	echo "%K{$ARROW_BG}%F{$ARROW_FG}"
+	echo "%K{$ARROW_BG}%F{$ARROW_FG}%B"
 }
 
 arrow_end() {
@@ -62,37 +58,30 @@ err_username() {
 	ARROW_BG="160"
 	NEXT_ARROW_BG="183"
 	NEXT_ARROW_FG="160"
-echo "$(arrow_start) %n $(arrow_end)"
+	echo "$(arrow_start) %n $(arrow_end)"
 }
 
 
-directory() {
+directory_end() {
+  ARROW_FG="000"
+  ARROW_BG="015"
+  SEGMENT_FG="239"   
+  SEGMENT_BG="015"   
+	NEXT_ARROW_BG="083"
+	NEXT_ARROW_FG="015" 
+	echo "$(arrow_start)%K{$SEGMENT_BG}%F{$SEGMENT_FG} %2~ %k%f$(arrow_end)";
+}
+
+directory_final() {
   ARROW_FG="000"
   ARROW_BG="015"
   SEGMENT_FG="239"   
   SEGMENT_BG="015"   
 	NEXT_ARROW_BG="000"
 	NEXT_ARROW_FG="015" 
-	echo "$(arrow_start)%K{$SEGMENT_BG}%F{$SEGMENT_FG} %2~ %k%f";
+	echo "$(arrow_start)%K{$SEGMENT_BG}%F{$SEGMENT_FG} %2~ %k%f$(arrow_final)";
 }
 
-version_status() {
-	# ARROW_FG="000"
-	# ARROW_BG="157"
-	# SEGMENT_FG="233"   
-	# SEGMENT_BG="157" 
-	# NEXT_ARROW_BG="000"
-	# NEXT_ARROW_FG="157"
-	# if [ -n "$vcs_info_msg_0_" ]
-	# 	then
-	# 		echo "$(arrow_start)%K{$SEGMENT_BG}%F{$SEGMENT_FG}\$vcs_info_msg_0_%k%f$(arrow_final)";
-	# 	else
-	# 		echo "$(arrow_start)%K{$SEGMENT_BG}%F{$SEGMENT_FG} \$vcs_info_msg_0_%k%f$(arrow_final)";
-	# fi
-	echo "\$vcs_info_msg_0_";
-}
-
-# return err_username if there are errors, ok_username otherwise
 username() {
 	echo "$(ok_username)"
 }
@@ -109,13 +98,36 @@ git_branch() {
 	echo $'\ue725'
 }
 
+version_status() {
+	ARROW_FG="190"
+	ARROW_BG="190"
+	SEGMENT_FG="000"   
+	SEGMENT_BG="083" 
+	NEXT_ARROW_BG="000"
+	NEXT_ARROW_FG="083"
+	echo "$(arrow_start)%K{$SEGMENT_BG}%F{$SEGMENT_FG} $(git_branch)\$vcs_info_msg_0_ %k%f$(arrow_final)";
+}
+
 zstyle ':vcs_info:*' enable git
 zstyle ':vcs_info:*' check-for-changes true
-zstyle ':vcs_info:*' unstagedstr "$(git_change) *1"
-zstyle ':vcs_info:*' stagedstr "$(git_change) +1"
-zstyle ':vcs_info:*' formats "$(arrow_start_git)%K{157}%F{239} $(git_branch) %b %F{197}%m%u%c%f %f %f%k"
+zstyle ':vcs_info:*' get-revision true
+zstyle ':vcs_info:*' unstagedstr "$(git_change) *"
+zstyle ':vcs_info:*' stagedstr "$(git_change) +"
+zstyle ':vcs_info:*' formats " %b %F{197}%m%u%c%f"
 zstyle ':vcs_info:*' nvcsformats "" ""
 zstyle ':vcs_info:*' actionformats "(%b|%a%u%c)"
 
-PROMPT="$(os_icon)$(username)$(hostname)$(directory)$(version_status) "
-RPROMPT="%F{232}%f%B%K{232} $(command_status) %k%b%K{232}%F{15}%f%k%K{15}%F{239} %* %f%k"
+
+precmd() {
+    # As always first run the system so everything is setup correctly.
+    vcs_info
+    if [[ -z ${vcs_info_msg_0_} ]]; then
+        # Oh hey, nothing from vcs_info, so we got more space.
+				PROMPT="$(os_icon)$(username)$(hostname)$(directory_final) "
+				RPROMPT="%F{232}%f%B%K{232} $(command_status) %k%b%K{232}%F{15}%f%k%K{15}%F{239} %* %f%k"
+    else
+        # vcs_info found something, that needs space.
+				PROMPT="$(os_icon)$(username)$(hostname)$(directory_end)$(version_status) "
+				RPROMPT="%F{232}%f%B%K{232} $(command_status) %k%b%K{232}%F{15}%f%k%K{15}%F{239} %* %f%k"
+    fi
+}
