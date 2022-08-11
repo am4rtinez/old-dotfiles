@@ -54,9 +54,6 @@ autoload -Uz compinit add-zsh-hook vcs_info; compinit
 setopt prompt_subst
 add-zsh-hook precmd vcs_info
 
-zstyle ':vcs_info:*' enable git
-zstyle ':vcs_info:*' check-for-changes true
-
 zstyle ':completion:*' auto-description 'specify: %d'
 zstyle ':completion:*' completer _expand _complete _correct _approximate
 zstyle ':completion:*' format 'Completing %d'
